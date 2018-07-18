@@ -3,6 +3,7 @@ import { receiveUsers } from './users';
 import { receiveTweets } from './tweets';
 import { setAuthedUser } from './authedUser';
 
+// Set authenticated UID
 const AUTHED_ID = 'tylermcginnis';
 
 // Retrieve initial data from server

@@ -1,4 +1,4 @@
-import { RECEIVE_TWEETS } from '../actions/users';
+import { RECEIVE_TWEETS } from '../actions/tweets';
 
 // Tweets reducer
 export default (state = {}, action) => {
