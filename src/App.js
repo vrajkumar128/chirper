@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { handleInitialData } from './actions/shared';
 
-class App extends Component {
-  async componentDidMount() {
-
+class App extends React.Component {
+  componentDidMount() {
+    debugger;
+    this.props.dispatch(handleInitialData);
   }
 
   render() {
@@ -14,4 +17,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);
