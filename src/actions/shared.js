@@ -9,7 +9,6 @@ const AUTHED_ID = 'tylermcginnis';
 // Retrieve initial data from server
 export const handleInitialData = () => async (dispatch) => {
   const { users, tweets } = await getInitialData();
-  console.log(users, tweets);
 
   dispatch(receiveUsers(users));
   dispatch(receiveTweets(tweets));
