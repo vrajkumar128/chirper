@@ -17,7 +17,7 @@ class App extends React.Component {
     return (
       <div>
         <h3 className="center">Your Timeline</h3>
-        {this.props.authedUser !== null ? <TweetList /> : <img className="center" height="100px" src={loader} />}
+        {this.props.authedUser !== null ? <TweetList /> : <img height="100px" src={loader} />}
       </div>
     );
   }

@@ -6,7 +6,7 @@ const TweetList = props => {
   // Render list of tweets
   const renderTweets = () => (
     props.tweetIds.map((tweetId) => (
-      <li key={tweetId} className="center">
+      <li key={tweetId}>
         <Tweet id={tweetId} />
       </li>
     ))
