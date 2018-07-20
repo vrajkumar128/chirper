@@ -2,29 +2,27 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { handleInitialData } from './actions/shared';
 import TweetList from './components/TweetList';
-import loader from './icons/Rolling-1s-200px.svg';
+import LoadingBar from 'react-redux-loading';
 
 class App extends React.Component {
+  // Fetch initial data
   componentDidMount() {
     this.props.dispatch(handleInitialData());
   }
 
-  loadingSpinner = () => (
-    <div></div>
-  );
-
   render() {
     return (
       <div>
+        <LoadingBar />
         <h3 className="center">Your Timeline</h3>
-        {this.props.authedUser !== null ? <TweetList /> : <img height="100px" src={loader} />}
+        {this.props.loadingBar.default === 0 && <TweetList />}
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ authedUser }) => ({
-  authedUser
+const mapStateToProps = ({ loadingBar }) => ({
+  loadingBar
 });
 
 export default connect(mapStateToProps)(App);

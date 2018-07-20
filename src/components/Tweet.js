@@ -21,10 +21,12 @@ const Tweet = props => {
     // todo: redirect to parent tweet
   }
 
+  // Go to parent tweet
   const handleClick = (e) => {
 
   }
 
+  // Like a tweet
   const handleLike = (e) => {
 
   }
