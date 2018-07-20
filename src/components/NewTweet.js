@@ -1,10 +1,12 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleAddTweet } from '../actions/tweets';
 
 class NewTweet extends React.Component {
   state = {
-    text: ''
+    text: '',
+    toHome: false
   }
 
   // Update state based on user input
@@ -20,20 +22,29 @@ class NewTweet extends React.Component {
     const { dispatch, id } = this.props;
 
     dispatch(handleAddTweet(text, id));
-    this.setState({ text: '' });
+    this.setState({
+      text: '',
+      toHome: id ? false : true
+    });
   }
 
   render() {
-    const { text } = this.state;
+    const { text, toHome } = this.state;
+    const { id } = this.props;
+
+    if (toHome) {
+      return <Redirect to="/" />;
+    }
+
     const charactersLeft = 280 - text.length;
 
     return (
-      <div>
-        <h3 className="center">Compose New Tweet</h3>
+      <div className="container">
+        <h3 className="center">{id ? "Tweet a Reply" : "Compose New Tweet"}</h3>
         <form className="new-tweet" onSubmit={this.handleSubmit}>
           <textarea
             className="textarea"
-            placeholder="What's happening?"
+            placeholder={id ? "Be nice!" : "What's happening?"}
             value={text}
             onChange={this.handleChange}
             maxLength={280}
