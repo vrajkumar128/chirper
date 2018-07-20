@@ -4,7 +4,7 @@ import { receiveTweets } from './tweets';
 import { setAuthedUser } from './authedUser';
 import { showLoading, hideLoading } from 'react-redux-loading';
 
-// Set authenticated UID
+// Set authedUser id
 const AUTHED_ID = 'tylermcginnis';
 
 // Retrieve initial data from server (w/ corresponding progress bar)

@@ -4,31 +4,33 @@ import { formatTweet, formatDate } from '../utils/helpers';
 import TiArrowBackOutline from 'react-icons/lib/ti/arrow-back-outline';
 import TiHeartOutline from 'react-icons/lib/ti/heart-outline';
 import TiHeartFullOutline from 'react-icons/lib/ti/heart-full-outline';
+import { handleToggleTweet } from '../actions/tweets';
 
 const Tweet = props => {
   const { tweet } = props;
 
   if (!tweet) {
-    return <p>"This tweet does not exist!"</p>;
+    return <p className="center">This tweet does not exist!</p>;
   };
 
   const {
     name, avatar, timestamp, text, hasLiked, likes, replies, parent
   } = tweet;
 
-  const toParent = (e, id) => {
-    e.preventDefault();
-    // todo: redirect to parent tweet
-  }
-
   // Go to parent tweet
   const handleClick = (e) => {
-
+    e.preventDefault();
   }
 
   // Like a tweet
   const handleLike = (e) => {
+    const { dispatch, tweet, authedUser } = props;
 
+    dispatch(handleToggleTweet({
+      id: tweet.id,
+      authedUser,
+      hasLiked: tweet.hasLiked,
+    }));
   }
 
   // Render tweet data
@@ -48,12 +50,12 @@ const Tweet = props => {
   // Render reply & like icons
   const renderIcons = () => (
     <div className="tweet-icons">
-      <TiArrowBackOutline className="tweet-icon"/>
+      <TiArrowBackOutline className="tweet-icon" title="Reply to this tweet" />
       <span>{replies !== 0 && replies}</span>
-      <button className="heart-button">
+      <button className="heart-button" onClick={handleLike}>
         {hasLiked
-          ? <TiHeartFullOutline color="#e0245e" className="tweet-icon" />
-          : <TiHeartOutline className="tweet-icon" />}
+          ? <TiHeartFullOutline color="#e0245e" className="tweet-icon" title="Unlike this tweet" />
+          : <TiHeartOutline className="tweet-icon" title="Like this tweet" />}
       </button>
       <span>{likes !== 0 && likes}</span>
     </div>
@@ -81,9 +83,9 @@ const mapStateToProps = ({ authedUser, users, tweets }, { id }) => {
 
   return {
     authedUser,
-    tweet: tweet ?
-    formatTweet(tweet, users[tweet.author], authedUser, parentTweet)
-    : null
+    tweet: tweet
+      ? formatTweet(tweet, users[tweet.author], authedUser, parentTweet)
+      : null
   };
 };
 

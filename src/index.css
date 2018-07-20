@@ -154,7 +154,13 @@ li {
   height: 100px;
 }
 
-.tweet-length {
+.tweet-length-high {
+  text-align: right;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.tweet-length-low {
   text-align: right;
   margin-top: 10px;
   font-size: 20px;
