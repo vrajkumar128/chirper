@@ -15,7 +15,7 @@ const TweetPage = props => {
       {replies.length > 0 ? <TweetList tweetIds={replies} /> : <p className="center">This tweet has no replies!</p>}
     </div>
   );
-}
+};
 
 const mapStateToProps = ({ authedUser, users, tweets }, ownProps) => {
   const { id } = ownProps.match.params;

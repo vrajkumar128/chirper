@@ -15,7 +15,7 @@ class NewTweet extends React.Component {
     this.setState({ text });
   }
 
-  // Add a new tweet when user submits form
+  // Add a new tweet and redirect to home when user submits form
   handleSubmit = (e) => {
     e.preventDefault();
     const { text } = this.state;

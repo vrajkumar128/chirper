@@ -9,13 +9,22 @@ class App extends React.Component {
     this.props.dispatch(handleInitialData());
   }
 
+  // Render a loading spinner
+  renderSpinner = () => (
+    <div className="center">
+      <img src="https://svgshare.com/i/7bd.svg" alt="Loading spinner" />
+    </div>
+  )
+
   render() {
     const { tweetIds } = this.props;
 
     return (
       <div>
         <h3 className="center">Your Timeline</h3>
-        {this.props.loadingBar.default === 0 && <TweetList tweetIds={tweetIds} />}
+        {this.props.loadingBar.default
+          ? this.renderSpinner()
+          : <TweetList tweetIds={tweetIds} />}
       </div>
     );
   }
